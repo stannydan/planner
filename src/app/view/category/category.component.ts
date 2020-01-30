@@ -24,6 +24,9 @@ export class CategoryComponent implements OnInit {
   }
 /*
 
+
+
+
   getTasksByCategory(category: Category) {
     this.dataHandlerService.getTasks().filter(task => task.category === category );
   }
