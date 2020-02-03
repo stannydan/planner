@@ -8,7 +8,7 @@ import {DataHandlerService} from './service/data-handler.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent {   //Root-app
   title = 'planner';
 
   tasks: Task[];
@@ -23,7 +23,7 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
-    this.onSelectCategory(null); // показать все задачи
+   // this.onSelectCategory(null); // показать все задачи
   }
 
 

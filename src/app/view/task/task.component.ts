@@ -65,7 +65,6 @@ export class TaskComponent implements OnInit, AfterViewInit {
     if (task.priority && task.priority.color) {
       return task.priority.color;
     }
-
     return '#fff';
   }
 
