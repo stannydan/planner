@@ -18,6 +18,8 @@ export class CategoryDAOArrayImpl implements CategoryDAO{
   }
 
   getAll(): Observable<Category[]> {
+
+    console.log(TestData.categories);
     return of(TestData.categories);
   }
 

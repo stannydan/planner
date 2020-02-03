@@ -14,6 +14,8 @@ export class AppComponent {
   tasks: Task[];
   categories: Category[];
 
+  private selectedCategory: Category = null;
+
   constructor(
     private dataHandler: DataHandlerService // фасад для работы с данными
   ) {
@@ -21,7 +23,24 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
-    this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks);
+    this.onSelectCategory(null); // показать все задачи
   }
+
+
+  private onSelectCategory(category: Category) {
+
+    this.selectedCategory = category;
+
+    this.dataHandler.searchTasks(
+      this.selectedCategory,
+      null,
+      null,
+      null
+    ).subscribe(tasks => {
+      this.tasks = tasks;
+    });
+
+  }
+
 
 }

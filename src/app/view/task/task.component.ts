@@ -16,8 +16,16 @@ export class TaskComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, {static: false}) private sort: MatSort;
 
 
-  @Input()
+ // @Input()
   private tasks: Task[];
+
+  @Input('tasks')
+  private set setTasks(tasks: Task[]) { // напрямую не присваиваем значения в переменную, только через @Input
+    this.tasks = tasks;
+    this.refreshTable();
+  }
+
+
 
   constructor(private dataHandler: DataHandlerService ) { }
 /*
@@ -66,6 +74,11 @@ export class TaskComponent implements OnInit, AfterViewInit {
 
 
   private refreshTable() {
+
+
+    if (!this.dataSource){
+      return;
+    }
 
     this.dataSource.data = this.tasks; // обновить источник данных (т.к. данные массива tasks обновились)
 
