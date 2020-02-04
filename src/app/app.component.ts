@@ -23,7 +23,7 @@ export class AppComponent {   //Root-app
 
   ngOnInit(): void {
     this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
-   // this.onSelectCategory(null); // показать все задачи
+   //        this.onSelectCategory(null); // показать все задачи
   }
 
 
