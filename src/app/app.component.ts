@@ -43,4 +43,10 @@ export class AppComponent {   //Root-app
   }
 
 
+ /* onUpdateTask(task: any) {
+    console.log(task)
+  }*/
+  onUpdateTask($event: Task) {
+    console.log($event.name)
+  }
 }
