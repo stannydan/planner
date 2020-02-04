@@ -1,7 +1,8 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {DataHandlerService} from '../../service/data-handler.service';
 import {Task} from  '../../model/task';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {EditTaskDialogComponent} from '../../dialog/edit-task-dialog/edit-task-dialog.component';
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
@@ -29,7 +30,9 @@ export class TaskComponent implements OnInit, AfterViewInit {
   updateTask = new EventEmitter<Task>();
 
 
-  constructor(private dataHandler: DataHandlerService ) { }
+  constructor(private dataHandler: DataHandlerService,
+              private dialog: MatDialog
+              ) { }
 /*
 
   ngOnInit() {
@@ -119,5 +122,17 @@ export class TaskComponent implements OnInit, AfterViewInit {
 
   onClickTask(task: Task) {
     this.updateTask.emit(task);
+  }
+
+  openEditTaskDialog(task: Task) {
+
+    // открытие диалогового окна
+    const dialogRef = this.dialog.open(EditTaskDialogComponent, {data: [task, 'Редактирование задачи'], autoFocus: false});
+
+    dialogRef.afterClosed().subscribe(result => {
+      // обработка результатов
+
+
+    });
   }
 }

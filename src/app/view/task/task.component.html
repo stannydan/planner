@@ -28,7 +28,7 @@
 
       <ng-container matColumnDef="name">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Название</th>
-        <td class="namePointer" (click)="onClickTask(task)" *matCellDef="let task" [class.completed]="task.completed" mat-cell>
+        <td class="namePointer" (click)="openEditTaskDialog(task)" *matCellDef="let task" [class.completed]="task.completed" mat-cell>
 
           {{task.name}}
 
