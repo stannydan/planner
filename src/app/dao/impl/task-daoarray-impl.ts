@@ -52,7 +52,8 @@ export class TaskDAOArrayImpl implements TaskDAO {
   // поиск задач по параметрам
   // если значение null - параметр не нужно учитывать при поиске
   search(category: Category, searchText: string, status: boolean, priority: Priority): Observable<Task[]> {
-
+    console.log("------")
+    console.log(TestData.tasks)
     return of(this.searchTodos(category, searchText, status, priority));
 
   }
@@ -66,12 +67,15 @@ export class TaskDAOArrayImpl implements TaskDAO {
       allTasks = allTasks.filter(todo => todo.category === category);
     }
 
-
     return allTasks; // отфильтрованный массив
   }
 
   update(T): Observable<Task> {
-    return undefined;
+
+    const taskTmp = TestData.tasks.find(t => t.id === T.id); // обновляем по id
+    TestData.tasks.splice(TestData.tasks.indexOf(taskTmp), 1, T);
+    return of(T);
+
   }
 
 

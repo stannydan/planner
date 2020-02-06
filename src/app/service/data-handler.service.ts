@@ -15,11 +15,13 @@ export class DataHandlerService {
   private taskDaoArray = new TaskDAOArrayImpl();
   private categoryArray = new CategoryDAOArrayImpl()
 
-  constructor() {}
+  constructor() {
+  }
 
   getAllTasks(): Observable<Task[]> {
     return this.taskDaoArray.getAll();
   }
+
   getAllCategories(): Observable<Category[]> {
     console.log(this.categoryArray.getAll());
     return this.categoryArray.getAll();
@@ -31,4 +33,7 @@ export class DataHandlerService {
   }
 
 
+  updateTask(task: Task): Observable<Task> {
+    return this.taskDaoArray.update(task);
+  }
 }
