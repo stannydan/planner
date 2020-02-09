@@ -1,6 +1,7 @@
 import {PriorityDAO} from '../interface/priority-dao';
 import {Priority} from '../../model/priority';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
+import {TestData} from "../../data/TestData";
 
 export class PriorityDAOArrayImpl implements PriorityDAO {
   add(T): Observable<Priority> {
@@ -16,7 +17,8 @@ export class PriorityDAOArrayImpl implements PriorityDAO {
   }
 
   getAll(): Observable<Priority[]> {
-    return undefined;
+    console.log(TestData.priorities);
+    return of(TestData.priorities);
   }
 
   update(T): Observable<Priority> {
