@@ -71,6 +71,7 @@
      End Navbar
     <div class="content">
       <app-task  [tasks]="tasks"
+                 (deleteTask)="onDeleteTask($event)"
                  (updateTask) = "onUpdateTask($event)"
       ></app-task>
 

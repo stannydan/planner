@@ -20,13 +20,15 @@ import {
 } from '@angular/material';
 import { EditTaskDialogComponent } from './dialog/edit-task-dialog/edit-task-dialog.component';
 import {FormsModule} from '@angular/forms';
+import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryComponent,
     TaskComponent,
-    EditTaskDialogComponent
+    EditTaskDialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,7 @@ import {FormsModule} from '@angular/forms';
     MatSelectModule
   ],
   providers: [DataHandlerService],
-  entryComponents:[EditTaskDialogComponent],
+  entryComponents:[EditTaskDialogComponent,ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
