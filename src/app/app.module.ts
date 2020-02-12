@@ -21,6 +21,8 @@ import {
 import { EditTaskDialogComponent } from './dialog/edit-task-dialog/edit-task-dialog.component';
 import {FormsModule} from '@angular/forms';
 import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.c
     TaskComponent,
     EditTaskDialogComponent,
     ConfirmDialogComponent
+
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,10 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.c
     MatButtonModule,
     MatIconModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
   ],
   providers: [DataHandlerService],
   entryComponents:[EditTaskDialogComponent,ConfirmDialogComponent],
