@@ -23,6 +23,7 @@ import {FormsModule} from '@angular/forms';
 import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { TaskDatePipe } from './pipe/task-date.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     CategoryComponent,
     TaskComponent,
     EditTaskDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    TaskDatePipe
 
   ],
   imports: [
