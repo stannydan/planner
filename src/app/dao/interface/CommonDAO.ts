@@ -11,7 +11,7 @@ export interface CommonDAO<T> {
   get(id: number): Observable<T>; // получение значения по уникальному id
 
 
-  update(T): Observable<T>;
+    update(T): Observable<T>;
 
 
   delete(id: number): Observable<T>; // удаление по id

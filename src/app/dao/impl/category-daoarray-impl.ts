@@ -9,10 +9,6 @@ export class CategoryDAOArrayImpl implements CategoryDAO{
     return undefined;
   }
 
-  delete(id: number): Observable<Category> {
-    return undefined;
-  }
-
   get(id: number): Observable<Category> {
     return undefined;
   }
@@ -27,9 +23,29 @@ export class CategoryDAOArrayImpl implements CategoryDAO{
     return undefined;
   }
 
-  update(T): Observable<Category> {
-    return undefined;
+  delete(id: number): Observable<Category> {
+
+    // перед удалением - нужно в задачах занулить все ссылки на удаленное значение
+    // в реальной БД сама обновляет все ссылки (cascade update) - здесь нам приходится делать это вручную (т.к. вместо БД - массив)
+    TestData.tasks.forEach(task => {
+      if (task.category && task.category.id === id) {
+        task.category = null;
+      }
+    });
+
+    const tmpCategory = TestData.categories.find(t => t.id === id); // удаляем по id
+    TestData.categories.splice(TestData.categories.indexOf(tmpCategory), 1);
+
+    return of(tmpCategory);
+
   }
 
+  update(T): Observable<Category> {
+
+    const tmpCategory = TestData.categories.find(t => t.id === T.id); // обновляем по id
+    TestData.categories.splice(TestData.categories.indexOf(tmpCategory), 1, T);
+
+    return of(tmpCategory);
+  }
 
 }

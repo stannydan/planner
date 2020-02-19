@@ -14,7 +14,7 @@ import {PriorityDAOArrayImpl} from '../dao/impl/priority-daoarrayimpl';
 export class DataHandlerService {
 
   private taskDaoArray = new TaskDAOArrayImpl();
-  private categoryArray = new CategoryDAOArrayImpl()
+  private categoryDaoArray = new CategoryDAOArrayImpl()
   private priorityDaoArray = new PriorityDAOArrayImpl();
 
   constructor() {
@@ -25,8 +25,8 @@ export class DataHandlerService {
   }
 
   getAllCategories(): Observable<Category[]> {
-    console.log(this.categoryArray.getAll());
-    return this.categoryArray.getAll();
+    console.log(this.categoryDaoArray.getAll());
+    return this.categoryDaoArray.getAll();
   }
 
   getAllPriorities():Observable<Priority[]>{
@@ -45,5 +45,13 @@ export class DataHandlerService {
 
   deleteTask(id: number): Observable<Task> {
     return this.taskDaoArray.delete(id);
+  }
+
+  deleteCategory(id: number): Observable<Category> {
+return this.categoryDaoArray.delete(id);
+  }
+
+  updateCategory(category: Category): Observable<Category> {
+    return this.categoryDaoArray.update(category);
   }
 }

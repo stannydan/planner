@@ -21,7 +21,7 @@ export class PriorityDAOArrayImpl implements PriorityDAO {
     return of(TestData.priorities);
   }
 
-  update(T): Observable<Priority> {
+    update(T): Observable<Priority> {
     return undefined;
   }
 
