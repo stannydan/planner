@@ -59,20 +59,35 @@ export class TaskDAOArrayImpl implements TaskDAO {
   search(category: Category, searchText: string, status: boolean, priority: Priority): Observable<Task[]> {
     console.log("------")
     console.log(TestData.tasks)
-    return of(this.searchTodos(category, searchText, status, priority));
+    return of(this.searchTasks(category, searchText, status, priority));
 
   }
 
-  private searchTodos(category: Category, searchText: string, status: boolean, priority: Priority): Task[] {
+  private searchTasks(category: Category, searchText: string, status: boolean, priority: Priority): Task[] {
 
     let allTasks = TestData.tasks;
 
-
-    if (category != null) {
-      allTasks = allTasks.filter(todo => todo.category === category);
+    // поочереди применяем все условия (какие не пустые)
+    if (status != null) {
+      allTasks = allTasks.filter(task => task.completed === status);
     }
 
-    return allTasks; // отфильтрованный массив
+    if (category != null) {
+      allTasks = allTasks.filter(task => task.category === category);
+    }
+
+    if (priority != null) {
+      allTasks = allTasks.filter(task => task.priority === priority);
+    }
+
+    if (searchText != null) {
+      allTasks = allTasks.filter(
+        task =>
+          task.name.toUpperCase().includes(searchText.toUpperCase()) // учитываем текст поиска (если '' - возвращаются все значения)
+      );
+    }
+
+    return allTasks;
   }
 
     update(T): Observable<Task> {

@@ -4,6 +4,7 @@ import {Task} from  '../../model/task';
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {EditTaskDialogComponent} from '../../dialog/edit-task-dialog/edit-task-dialog.component';
 import {ConfirmDialogComponent} from "../../dialog/confirm-dialog/confirm-dialog.component";
+import {Priority} from "../../model/priority";
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
@@ -19,7 +20,19 @@ export class TaskComponent implements OnInit, AfterViewInit {
 
 
 
+// поиск
+  private searchTaskText: string; // текущее значение для поиска задач
+  private selectedStatusFilter: boolean = null;   // по-умолчанию будут показываться задачи по всем статусам (решенные и нерешенные)
+  private selectedPriorityFilter: Priority = null;   // по-умолчанию будут показываться задачи по всем приоритетам
+
+
   private tasks: Task[];
+
+  private priorities: Priority[]; // список приоритетов (для фильтрации задач)
+  @Input('priorities')
+  set setPriorities(priorities: Priority[]) {
+    this.priorities = priorities;
+  }
 
   @Input('tasks')
   private set setTasks(tasks: Task[]) { // напрямую не присваиваем значения в переменную, только через @Input
@@ -32,6 +45,17 @@ export class TaskComponent implements OnInit, AfterViewInit {
 
   @Output()
   deleteTask = new EventEmitter<Task>();
+
+  @Output()
+  filterByTitle = new EventEmitter<string>();
+
+  @Output()
+  filterByStatus = new EventEmitter<boolean>();
+
+  @Output()
+  filterByPriority = new EventEmitter<Priority>();
+
+
 
 
   constructor(private dataHandler: DataHandlerService,
@@ -164,6 +188,7 @@ export class TaskComponent implements OnInit, AfterViewInit {
   }
 
   // диалоговое окно подтверждения удаления
+
   private openDeleteDialog(task: Task) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: '500px',
@@ -181,5 +206,32 @@ export class TaskComponent implements OnInit, AfterViewInit {
   private onToggleStatus(task: Task) {
     task.completed = !task.completed;
     this.updateTask.emit(task);
+  }
+
+  // фильтрация по названию
+  private onFilterByTitle() {
+    this.filterByTitle.emit(this.searchTaskText);
+  }
+
+  // фильтрация по статусу
+  private onFilterByStatus(value: boolean) {
+
+    // на всякий случай проверяем изменилось ли значение (хотя сам гуишный компонент должен это делать)
+    if (value !== this.selectedStatusFilter) {
+      this.selectedStatusFilter = value;
+      this.filterByStatus.emit(this.selectedStatusFilter);
+    }
+
+
+  }
+
+  // фильтрация по приоритету
+  private onFilterByPriority(value: Priority) {
+
+    // на всякий случай проверяем изменилось ли значение (хотя сам UI компонент должен это делать)
+    if (value !== this.selectedPriorityFilter) {
+      this.selectedPriorityFilter = value;
+      this.filterByPriority.emit(this.selectedPriorityFilter);
+    }
   }
 }
