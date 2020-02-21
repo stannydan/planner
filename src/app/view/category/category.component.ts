@@ -3,6 +3,8 @@ import {DataHandlerService} from '../../service/data-handler.service';
 import {Category} from '../../model/category';
 import {EditCategoryDialogComponent} from "../../dialog/edit-category-dialog/edit-category-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {Task} from "../../model/task";
+import {OperType} from "../../dialog/oper-type.enum";
 
 @Component({
   selector: 'app-category',
@@ -30,8 +32,14 @@ export class CategoryComponent implements OnInit {
   @Input()
   selectedCategory: Category;
 
+  // добавили категорию
+  @Output()
+  addCategory = new EventEmitter<string>(); // передаем только название новой категории
+
   // для отображения иконки редактирования при наведении на категорию
   private indexMouseMove: number;
+
+
 
 
   constructor(private dataHandlerService: DataHandlerService,private dialog:MatDialog) { }
@@ -96,6 +104,18 @@ export class CategoryComponent implements OnInit {
 
         this.updateCategory.emit(category); // вызываем внешний обработчик
         return;
+      }
+    });
+  }
+
+  // диалоговое окно для добавления категории
+  private openAddDialog() {
+
+    const dialogRef = this.dialog.open(EditCategoryDialogComponent, {data: ['', 'Добавление категории'], width: '400px'});
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.addCategory.emit(result as string); // вызываем внешний обработчик
       }
     });
   }

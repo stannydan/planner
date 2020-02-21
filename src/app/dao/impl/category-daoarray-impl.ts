@@ -3,10 +3,22 @@ import {Category} from '../../model/category';
 import {CategoryDAO} from '../interface/category-dao';
 import {Observable, of} from 'rxjs';
 import {TestData} from '../../data/TestData';
+import {Task} from "../../model/task";
 
 export class CategoryDAOArrayImpl implements CategoryDAO{
-  add(T): Observable<Category> {
-    return undefined;
+  add(category: Category): Observable<Category> {
+
+    // если id пустой - генерируем его
+    if (category.id === null || category.id === 0) {
+      category.id = this.getLastIdCat() + 1;
+    }
+    TestData.categories.push(category);
+
+    return of(category);
+  }
+
+  private getLastIdCat(): number {
+    return Math.max.apply(Math, TestData.categories.map(category => category.id));
   }
 
   get(id: number): Observable<Category> {

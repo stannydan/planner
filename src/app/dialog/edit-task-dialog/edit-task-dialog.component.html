@@ -92,43 +92,45 @@
 
     <div class="col-md-5 col-12" >
   <button
-    (click)="onConfirm()" [disabled]="inputTitle.value.trim().length==0"
-    color="primary"
-    mat-raised-button>  <!-- если пустой текст - кнопка "Сохранить" будет недоступна -->
-    Сохранить
-  </button>
+  (click)="onConfirm()" [disabled]="inputTitle.value.trim().length==0"
+  color="primary"
+  mat-raised-button>  <!-- если пустой текст - кнопка "Сохранить" будет недоступна -->
+  Сохранить
+</button>
 
 
   <button (click)="onCancel()" mat-raised-button>Отмена</button>
 
-    </div>
+  </div>
 
 
   <button
-    mat-raised-button class="green"
-    color="accent"
-    *ngIf="!task.completed"
-    (click)="complete()"
+    (click)="complete()" *ngIf="!task.completed"
+    class="green"
+    mat-button
+
   >
-    Завершить задачу
+    Завершить
   </button>
 
   <button
-    mat-raised-button class="green"
-    color="accent"
-    (click)="activate()"
-    *ngIf="task.completed">
+    (click)="activate()" *ngIf="task.completed"
+    class="green"
+    mat-button>
 
     Активировать
 
   </button>
+
   <button
-    mat-raised-button
-    color="warn"
+
     (click)="delete()"
 
+    class="red"
+    mat-button
+
   >
-    Удалить задачу
+    Удалить
 
   </button>
 

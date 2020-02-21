@@ -75,13 +75,19 @@
     </nav>
      End Navbar
     <div class="content">
-      <app-task  [tasks]="tasks"
-                 (deleteTask)="onDeleteTask($event)"
-                 (updateTask) = "onUpdateTask($event)"
-                 (filterByStatus)="onFilterTasksByStatus($event)"
-                 (filterByTitle)="onSearchTasks($event)"
-                 (filterByPriority)="onFilterByPriority($event)"
-                 [priorities]="priorities"
+      <app-task               (updateTask)="onUpdateTask($event)"
+                              (deleteTask)="onDeleteTask($event)"
+                              (selectCategory)="onSelectCategory($event)"
+                              (addTask)="onAddTask($event)"
+
+
+                              [selectedCategory]="selectedCategory"
+                              (filterByTitle)="onSearchTasks($event)"
+                              (filterByPriority)="onFilterByPriority($event)"
+                              (filterByStatus)="onFilterTasksByStatus($event)"
+
+                              [tasks]="tasks"
+                              [priorities]="priorities"
       ></app-task>
 
     </div>

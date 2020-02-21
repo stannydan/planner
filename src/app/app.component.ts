@@ -127,8 +127,28 @@ export class AppComponent {   //Root-app
     });
   }
 
+  private updateCategory() {
+    this.dataHandler.getAllCategories().subscribe((categories:Category[])=>{this.categories=categories});
+  }
+
   onFilterByPriority($event: Priority) {
     this.priorityFilter = $event;
     this.updateTasks();
+  }
+
+  private onAddTask(task: Task) {
+
+    this.dataHandler.addTask(task).subscribe(result => {
+
+      this.updateTasks();
+
+    });
+
+  }
+
+  onAddCat(category: Category) {
+    this.dataHandler.addCategory(category).subscribe(result=>{
+      this.updateCategory();
+    })
   }
 }

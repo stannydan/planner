@@ -5,6 +5,7 @@ import { Task } from 'src/app/model/task';
 import {Category} from '../../model/category';
 import {Priority} from "../../model/priority";
 import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
+import {OperType} from "../oper-type.enum";
 
 @Component({
   selector: 'app-edit-task-dialog',
@@ -25,7 +26,7 @@ export class EditTaskDialogComponent implements OnInit {
   private tmpPriority: Priority;
   private priority: Priority;
   private dialogPriority: string;
-
+  private operType: OperType;
   private tmpDate: Date;
 
 
@@ -118,4 +119,7 @@ export class EditTaskDialogComponent implements OnInit {
   private activate() {
     this.dialogRef.close('activate');
   }
+
+
+
 }

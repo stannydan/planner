@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {OperType} from "../oper-type.enum";
 
 @Component({
   selector: 'app-edit-category-dialog',
@@ -9,6 +10,10 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog
 })
 export class EditCategoryDialogComponent implements OnInit {
 
+  private dialogTitle: string; // текст для диалогового окна
+  private categoryTitle: string; // текст для названия категории (при реактировании или добавлении)
+
+
   constructor(
     private dialogRef: MatDialogRef<EditCategoryDialogComponent>, // для работы с текущим диалог. окном
     @Inject(MAT_DIALOG_DATA) private data: [string, string], // данные, которые передали в диалоговое окно
@@ -16,8 +21,7 @@ export class EditCategoryDialogComponent implements OnInit {
   ) {
   }
 
-  private dialogTitle: string; // текст для диалогового окна
-  private categoryTitle: string; // текст для названия категории (при реактировании или добавлении)
+
 
   ngOnInit() {
 
@@ -25,7 +29,10 @@ export class EditCategoryDialogComponent implements OnInit {
     this.categoryTitle = this.data[0];
     this.dialogTitle = this.data[1];
 
+
   }
+
+
 
   // нажали ОК
   private onConfirm() {
@@ -57,4 +64,9 @@ export class EditCategoryDialogComponent implements OnInit {
 
 
   }
+  private canDelete() {
+
+  }
+
+
 }
