@@ -10,12 +10,19 @@ export class CategoryDAOArrayImpl implements CategoryDAO{
 
     // если id пустой - генерируем его
     if (category.id === null || category.id === 0) {
-      category.id = this.getLastIdCat() + 1;
+      category.id = this.getLastIdCategory();
     }
+
     TestData.categories.push(category);
 
     return of(category);
   }
+
+  // находит последний id (чтобы потом вставить новую запись с id, увеличенным на 1) - в реальной БД это происходит автоматически
+  private getLastIdCategory(): number {
+    return Math.max.apply(Math, TestData.categories.map(c => c.id)) + 1;
+  }
+
 
   private getLastIdCat(): number {
     return Math.max.apply(Math, TestData.categories.map(category => category.id));

@@ -64,9 +64,7 @@ export class EditCategoryDialogComponent implements OnInit {
 
 
   }
-  private canDelete() {
 
-  }
 
 
 }

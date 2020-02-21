@@ -59,7 +59,7 @@ return this.categoryDaoArray.delete(id);
     return this.taskDaoArray.add(task);
   }
 
-  addCategory(category:Category):Observable<Category>{
-    return  this.categoryDaoArray.add(category);
+  addCategory(category: string):Observable<Category>{
+    return  this.categoryDaoArray.add(new Category(null,category));
   }
 }

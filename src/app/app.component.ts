@@ -146,9 +146,15 @@ export class AppComponent {   //Root-app
 
   }
 
-  onAddCat(category: Category) {
-    this.dataHandler.addCategory(category).subscribe(result=>{
-      this.updateCategory();
-    })
+
+
+  // добавление категории
+  private onAddCategory(title: string) {
+    this.dataHandler.addCategory(title).subscribe(() => this.updateCategories());
   }
+
+  private updateCategories() {
+    this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
+  }
+
 }
