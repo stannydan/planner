@@ -13,6 +13,7 @@ import {OperType} from "../../dialog/oper-type.enum";
 })
 export class CategoryComponent implements OnInit {
 
+  searchCategoryTitle: string;
 
   @Input()
   categories: Category[];
@@ -35,6 +36,12 @@ export class CategoryComponent implements OnInit {
   // добавили категорию
   @Output()
   addCategory = new EventEmitter<string>(); // передаем только название новой категории
+
+
+  @Output()
+  searchCategory = new EventEmitter<string>(); // передаем строку для поиска
+
+
 
   // для отображения иконки редактирования при наведении на категорию
   private indexMouseMove: number;
@@ -109,6 +116,8 @@ export class CategoryComponent implements OnInit {
   }
 
   // диалоговое окно для добавления категории
+
+
   private openAddDialog() {
 
     const dialogRef = this.dialog.open(EditCategoryDialogComponent, {data: ['', 'Добавление категории'], width: '400px'});
@@ -119,4 +128,17 @@ export class CategoryComponent implements OnInit {
       }
     });
   }
+
+  // поиск категории
+  private search() {
+
+
+    if (this.searchCategoryTitle == null ) {
+      return;
+    }
+
+    this.searchCategory.emit(this.searchCategoryTitle);
+
+  }
+
 }

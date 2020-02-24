@@ -62,4 +62,8 @@ return this.categoryDaoArray.delete(id);
   addCategory(category: string):Observable<Category>{
     return  this.categoryDaoArray.add(new Category(null,category));
   }
+
+  searchCategories(title: string): Observable<Category[]> {
+    return this.categoryDaoArray.search(title);
+  }
 }

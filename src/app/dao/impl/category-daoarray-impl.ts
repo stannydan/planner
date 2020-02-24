@@ -38,8 +38,12 @@ export class CategoryDAOArrayImpl implements CategoryDAO{
     return of(TestData.categories);
   }
 
+  // поиск категорий по названию
   search(title: string): Observable<Category[]> {
-    return undefined;
+
+    return of(TestData.categories.filter(
+      cat => cat.name.toUpperCase().includes(title.toUpperCase()))
+      .sort((c1, c2) => c1.name.localeCompare(c2.name)));
   }
 
   delete(id: number): Observable<Category> {

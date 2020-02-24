@@ -23,6 +23,7 @@ export class AppComponent {   //Root-app
   private statusFilter: boolean;
 
   private priorities: Priority[]; // все приоритеты
+  private searchCategoryText: string;
 
 
 
@@ -157,4 +158,14 @@ export class AppComponent {   //Root-app
     this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
   }
 
+
+  // поиск категории
+  private onSearchCategory(title: string) {
+
+    this.searchCategoryText = title;
+
+    this.dataHandler.searchCategories(title).subscribe(categories => {
+      this.categories = categories;
+    });
+  }
 }
