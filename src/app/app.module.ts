@@ -28,6 +28,11 @@ import {registerLocaleData} from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { EditCategoryDialogComponent } from './dialog/edit-category-dialog/edit-category-dialog.component';
+import { FooterComponent } from './view/footer/footer.component';
+import { AboutDialogComponent } from './dialog/about-dialog/about-dialog.component';
+import { HeaderComponent } from './view/header/header.component';
+import { StatComponent } from './view/stat/stat.component';
+import { StatCardComponent } from './view/stat/stat-card/stat-card.component';
 
 registerLocaleData(localeRu);
 
@@ -39,7 +44,12 @@ registerLocaleData(localeRu);
     EditTaskDialogComponent,
     ConfirmDialogComponent,
     TaskDatePipe,
-    EditCategoryDialogComponent
+    EditCategoryDialogComponent,
+    FooterComponent,
+    AboutDialogComponent,
+    HeaderComponent,
+    StatComponent,
+    StatCardComponent
 
   ],
   imports: [
@@ -62,7 +72,7 @@ registerLocaleData(localeRu);
 
   ],
   providers: [DataHandlerService],
-  entryComponents:[EditTaskDialogComponent,ConfirmDialogComponent,EditCategoryDialogComponent],
+  entryComponents:[EditTaskDialogComponent,ConfirmDialogComponent,EditCategoryDialogComponent,AboutDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
