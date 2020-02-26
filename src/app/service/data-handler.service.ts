@@ -85,4 +85,19 @@ return this.categoryDaoArray.delete(id);
     return this.taskDaoArray.getTotalCountInCategory(category);
   }
 
+/*Priorities-dialog*/
+
+  addPriority(priority: Priority): Observable<Priority> {
+    return this.priorityDaoArray.add(priority);
+  }
+
+  deletePriority(id: number): Observable<Priority> {
+    return this.priorityDaoArray.delete(id);
+  }
+
+  updatePriority(priority: Priority): Observable<Priority> {
+    return this.priorityDaoArray.update(priority);
+  }
+
+
 }
