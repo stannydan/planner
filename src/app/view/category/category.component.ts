@@ -14,6 +14,10 @@ import {OperType} from "../../dialog/oper-type.enum";
 export class CategoryComponent implements OnInit {
 
   searchCategoryTitle: string;
+  // кол-во невыполненных задач всего
+  @Input()
+  uncompletedTotal: number;
+
 
   @Input()
   categories: Category[];
@@ -40,6 +44,17 @@ export class CategoryComponent implements OnInit {
 
   @Output()
   searchCategory = new EventEmitter<string>(); // передаем строку для поиска
+
+  // коллекция категорий с кол-вом незавершенных задач для каждой из них
+
+  private categoryMap = new Map<Category, number>();
+
+  // категории с кол-вом активных задач для каждой из них
+  private selectedCategoryMap: Map<Category, number>;
+  @Input('categoryMap')
+  set setCategoryMap(categoryMap: Map<Category, number>) {
+    this.selectedCategoryMap = categoryMap;
+  }
 
 
 
