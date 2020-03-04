@@ -11,6 +11,7 @@ import {TaskDAO} from '../interface/task-dao';
 export class TaskDAOArrayImpl implements TaskDAO {
 
 
+
   getAll(): Observable<Task[]> {
     return of(TestData.tasks);
     // return of(TestData.tasks);
