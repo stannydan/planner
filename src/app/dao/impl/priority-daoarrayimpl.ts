@@ -8,7 +8,7 @@ import {Injectable} from "@angular/core";
 //@Injectable
 export class PriorityDAOArrayImpl implements PriorityDAO {
 
-  constructor(private http: HttpClient) { }
+  //constructor(private http: HttpClient) { }
 
   get(id: number): Observable<Priority> {
 

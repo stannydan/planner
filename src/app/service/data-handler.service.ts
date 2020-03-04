@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import {Category} from '../model/category';
 import {Task} from '../model/task';
 
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
 import {TaskDAOArrayImpl} from '../dao/impl/task-daoarray-impl';
 import {CategoryDAOArrayImpl} from '../dao/impl/category-daoarray-impl';
 import {Priority} from '../model/priority';
 import {PriorityDAOArrayImpl} from '../dao/impl/priority-daoarrayimpl';
+import {HttpClient} from "@angular/common/http";
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +16,11 @@ import {PriorityDAOArrayImpl} from '../dao/impl/priority-daoarrayimpl';
 export class DataHandlerService {
 
   private taskDaoArray = new TaskDAOArrayImpl();
-  private categoryDaoArray = new CategoryDAOArrayImpl()
+  private categoryDaoArray = new CategoryDAOArrayImpl();
   private priorityDaoArray = new PriorityDAOArrayImpl();
 
-  constructor() {
+
+  constructor(private http:HttpClient) {
   }
 
   getAllTasks(): Observable<Task[]> {
@@ -29,8 +32,10 @@ export class DataHandlerService {
     return this.categoryDaoArray.getAll();
   }
 
-  getAllPriorities():Observable<Priority[]>{
-    return this.priorityDaoArray.getAll();
+  getAllPriorities():Observable<any>{
+     return this.http.get('http://localhost:8080/api/priority/list');
+
+    //return this.priorityDaoArray.getAll();
   }
 
   // поиск задач по параметрам
@@ -87,16 +92,16 @@ return this.categoryDaoArray.delete(id);
 
 /*Priorities-dialog*/
 
-  addPriority(priority: Priority): Observable<Priority> {
-    return this.priorityDaoArray.add(priority);
+  addPriority(priority: Priority): Observable<any> {
+    return this.http.post('http://localhost:8080/api/priority/create',priority);
   }
 
-  deletePriority(id: number): Observable<Priority> {
-    return this.priorityDaoArray.delete(id);
+  deletePriority(id: number): Observable<any> {
+    return this.http.get('http://localhost:8080/api/priority/delete/'+id);
   }
 
-  updatePriority(priority: Priority): Observable<Priority> {
-    return this.priorityDaoArray.update(priority);
+  updatePriority(priority: Priority): Observable<any> {
+    return this.http.post('http://localhost:8080/api/priority/create',priority);
   }
 
 
