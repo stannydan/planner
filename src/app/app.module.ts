@@ -38,6 +38,7 @@ import { SettingsDialogComponent } from './dialog/settings-dialog/settings-dialo
 import { PrioritiesComponent } from './view/priorities/priorities.component';
 import { EditPriorityDialogComponent } from './dialog/edit-priority-dialog/edit-priority-dialog.component';
 import {HttpClientModule} from "@angular/common/http";
+import {PriorityService} from "./service/priority.service";
 
 registerLocaleData(localeRu);
 
@@ -80,7 +81,7 @@ registerLocaleData(localeRu);
     ColorPickerModule,
     HttpClientModule
   ],
-  providers: [DataHandlerService],
+  providers: [DataHandlerService,PriorityService],
   entryComponents:[EditTaskDialogComponent,ConfirmDialogComponent,EditCategoryDialogComponent,AboutDialogComponent,SettingsDialogComponent,EditPriorityDialogComponent],
   bootstrap: [AppComponent]
 })

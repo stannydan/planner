@@ -5,6 +5,7 @@ import {DataHandlerService} from './service/data-handler.service';
 import {Priority} from "./model/priority";
 import {zip} from "rxjs";
 import {concatMap, map} from "rxjs/operators";
+import {PriorityService} from "./service/priority.service";
 
 @Component({
   selector: 'app-root',
@@ -43,8 +44,9 @@ export class AppComponent implements OnInit{   //Root-app
 
 
   constructor(
-    private dataHandler: DataHandlerService // фасад для работы с данными
-  ) {
+    private priorityService: PriorityService ,// фасад для работы с данными
+  private dataHandler: DataHandlerService
+) {
   }
 
   ngOnInit(): void {
